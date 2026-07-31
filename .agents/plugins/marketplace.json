@@ -1,0 +1,12 @@
+{
+  "name": "prophet",
+  "interface": { "displayName": "Prophet" },
+  "plugins": [
+    {
+      "name": "one-brain",
+      "source": { "source": "local", "path": "./plugins/one-brain" },
+      "policy": { "installation": "AVAILABLE" },
+      "category": "Productivity"
+    }
+  ]
+}

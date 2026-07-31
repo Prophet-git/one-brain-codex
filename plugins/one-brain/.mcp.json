@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "one-brain": {
+      "type": "http",
+      "url": "https://onebrain.prophet.lat/api/mcp"
+    }
+  }
+}

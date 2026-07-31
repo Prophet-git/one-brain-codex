@@ -1,0 +1,35 @@
+{
+  "name": "one-brain",
+  "version": "0.1.554",
+  "description": "Memoria colectiva de la empresa: contexto del equipo al arrancar, guardar y buscar desde Codex.",
+  "author": {
+    "name": "Prophet",
+    "url": "https://prophet.lat"
+  },
+  "homepage": "https://onebrain.prophet.lat",
+  "repository": "https://github.com/Prophet-git/one-brain-codex",
+  "keywords": [
+    "memoria",
+    "equipo",
+    "contexto"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "One Brain",
+    "shortDescription": "La memoria de tu equipo, adentro de Codex",
+    "longDescription": "Trae el contexto vigente del equipo al arrancar cada sesión y guarda los avances y decisiones para que los tenga el resto.",
+    "developerName": "Prophet",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://onebrain.prophet.lat",
+    "brandColor": "#7c5cff",
+    "defaultPrompt": [
+      "¿En qué quedamos con este cliente?",
+      "Guardá lo que avanzamos hoy"
+    ]
+  }
+}

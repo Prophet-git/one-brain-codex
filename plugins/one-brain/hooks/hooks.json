@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$PLUGIN_ROOT/scripts/session-start.sh\"",
+            "timeout": 600,
+            "statusMessage": "Trayendo el contexto de tu equipo…"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$PLUGIN_ROOT/scripts/stop-guard.sh\"",
+            "timeout": 600,
+            "statusMessage": "One Brain: revisando si quedó trabajo sin guardar…"
+          }
+        ]
+      }
+    ]
+  }
+}
