@@ -95,10 +95,14 @@ elif [ "$(ob_should_renag "$CNT")" = "1" ]; then
 fi
 [ "$REMIND" = "1" ] || exit 0
 # El sobre JSON, igual que en session-start.sh de este paquete. El texto es una constante con el
-# escapeo ya resuelto a mano (las únicas comillas internas son las de "listo/gracias"): no entra
-# nada dinámico, así que no hace falta el escapador de session-start.
-# Acá el bin NO se nombra. El aviso deriva en session-capture, que ya trae la ruta completa del
-# ejecutable; repetirla pelada acá sería dar a medias una orden que allá está entera — y en Codex
-# un bin pelado no resuelve, porque no está en el PATH del shell donde el modelo corre comandos.
-printf '{"hookSpecificOutput":{"hookEventName":"Stop","additionalContext":"Hay trabajo en esta sesión sin registrar en One Brain. Al cerrar (o si decís algo tipo \\"listo/gracias\\"): (1) guardá los avances/decisiones con la skill session-capture (destilá, proponé y guardá); (2) si quedó trabajo a medio hacer, dejá un handoff con la skill handoff para retomarlo en la próxima sesión."}}'
+# escapeo ya resuelto a mano (las únicas comillas internas son las de la frase que se le sugiere
+# pedir): no entra nada dinámico, así que no hace falta el escapador de session-start.
+#
+# ESTE AVISO LE HABLA A LA PERSONA, NO AL MODELO. En Codex la salida de un hook entra al hilo
+# como un ítem propio: no es un susurro al asistente, es texto que la persona ve en pantalla.
+# Antes decía "guardá los avances con la skill session-capture (destilá, proponé y guardá)", que
+# es una orden para el modelo: quien la leía era la persona, y le llegaba en imperativo, con el
+# nombre técnico de dos skills que no sabe invocar. Decisión de Bauti (2-ago): que hable en
+# criollo y le diga qué pedir. Por eso tampoco se nombra ningún bin ni ninguna skill acá.
+printf '{"hookSpecificOutput":{"hookEventName":"Stop","additionalContext":"One Brain: quedó trabajo de esta sesión sin guardar en el cerebro del equipo.\\n\\nAntes de cerrar, pedime \\"guardá lo que hicimos\\" y lo dejo registrado para el resto del equipo."}}'
 exit 0

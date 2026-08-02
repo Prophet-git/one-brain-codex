@@ -14,9 +14,10 @@ En Codex los bins **no están en el PATH** — hay que invocarlos por ruta compl
 
 ## Qué hacés
 
-1. **Token configurado.** Corré: `sh "<RAIZ>/core/bin/onebrain-token" get`. Lee `~/.config/one-brain/token`.
-   - Si imprime el token → hay token guardado. **Nunca lo muestres en pantalla ni lo repitas**, solo confirmá que existe.
-   - Si sale "sin token" (o exit ≠ 0) → NO hay token. Saltá al reporte: "no conectado, falta el token".
+1. **Token configurado.** Corré: `sh "<RAIZ>/core/bin/onebrain-token" check`. Mira `~/.config/one-brain/token` y responde si hay token **sin imprimirlo**.
+   - "hay token guardado" → está conectado.
+   - "sin token" (o exit ≠ 0) → NO hay token. Saltá al reporte: "no conectado, falta el token".
+   - Es `check` y no `get` a propósito: `get` imprime la credencial en claro y todo lo que sale por pantalla queda escrito en el registro local de esta sesión. Para saber si hay token no hace falta verlo.
 
 2. **El conector responde.** Solo si hay token, corré: `sh "<RAIZ>/core/bin/onebrain-token" verify`. Hace un `tools/list` contra el endpoint MCP y espera HTTP 200.
    - "conexión OK" → el conector responde.

@@ -19,23 +19,14 @@ Los bins de One Brain viven en `core/bin/` de este paquete, o sea **dos niveles 
    - **token** — si hay credencial guardada en esta máquina.
    - **curl** — si está la herramienta que usa el plugin para hablar con el cerebro.
    - **parser** — si los hooks pueden leer el input que les manda el programa. Si esto falla, la captura automática no anda aunque todo lo demás esté bien.
-   - **hooks** — **no aplica en Codex** (ver abajo).
-   - **carpeta** — **se lee distinto en Codex** (ver abajo).
+   - **hooks** — si los avisos de One Brain están aprobados en la configuración de Codex. Es el chequeo que más importa acá: un aviso recién instalado nace **sin aprobar y no se ejecuta**, aunque el plugin figure instalado y activo, y no hay ninguna señal de eso. Vuelve a pedirse después de cada actualización que toque esos avisos.
+   - **carpeta** — si hay un `AGENTS.md` (en esta carpeta o en las de arriba) con las reglas del cerebro. Si falta, se las podés escribir vos cuando te lo pida: agregadas al final, sin pisar lo que el archivo ya tenga (`brain_context` al arrancar, `brain_search` para consultar, `brain_save` al cerrar).
    - **entrega** — si el contexto que el cerebro manda al arrancar la sesión llegó entero o hubo que recortarlo por tamaño. Es la falla que más contexto se comió históricamente y desde afuera no se ve.
    - **captura** — cuántas sesiones anteriores quedaron con trabajo sin destilar.
    - **conexion** — si el cerebro responde con este token.
-   - **version** — **puede no aparecer en Codex** (ver abajo).
+   - **version** — qué versión del paquete está corriendo.
 
-## Tres líneas que en Codex NO se leen literal
-
-El diagnóstico es compartido con el otro paquete de One Brain (el del asistente de Anthropic) y
-hay chequeos que miran archivos que en Codex no existen. En una máquina que solo tiene Codex
-dicen cosas que no corresponden. **No se las repitas al usuario tal cual y no lo mandes a
-arreglar nada por ellas:**
-
-- **`hooks`** mira `disableAllHooks` en `~/.claude/settings.json`, un archivo que en Codex no existe. Siempre va a decir `ok`, y ese `ok` no dice nada sobre esta máquina — **omitilo del reporte**. El equivalente real acá es la confianza de hooks: Codex ata el permiso de correr cada hook a un hash de su definición, y si el usuario no lo aprobó, el hook simplemente no corre. Si la sospecha es esa (no llega el contexto del equipo al arrancar), lo que corresponde es reiniciar Codex y aprobar el hook cuando lo pregunte.
-- **`carpeta`** busca las reglas del cerebro en un `CLAUDE.md`. Acá el archivo equivalente es **`AGENTS.md`**, así que una instalación sana puede dar `aviso` en esta línea. Antes de reportarlo como problema, fijate vos si hay un `AGENTS.md` (en esta carpeta o en las de arriba) que nombre `brain_context` y `brain_save`. Si lo hay, está todo bien y no lo menciones. Si no lo hay, ahí sí decilo: falta dejar las reglas de One Brain en el `AGENTS.md` de la carpeta donde trabaja, y se las podés escribir vos si te lo pide (agregadas al final, sin pisar lo que el archivo ya tenga: `brain_context` al arrancar, `brain_search` para consultar, `brain_save` al cerrar).
-- **`version`** sale de un registro de plugins que en Codex no existe: en esta máquina la línea puede directamente no aparecer. Eso es lo esperado, no un problema. No lo reportes como falta.
+Cada línea habla de ESTA máquina: reportá lo que dice, sin traducir ni omitir nada.
 
 ## Cómo lo reportás
 
@@ -46,6 +37,7 @@ Primero **el veredicto en una línea**: "está todo bien" o "encontré N problem
 | `token` | Pedile el token a quien le dio acceso y conectá con la skill `one-brain:connect` |
 | `curl` | Instalar curl (en Windows: usar Git Bash o WSL, que ya lo traen) |
 | `parser` | Actualizar el plugin (ver "Cómo se actualiza", abajo) y reiniciar Codex |
+| `hooks` en `aviso` | Cerrar Codex, volver a abrirlo y **aceptar los avisos de One Brain** cuando los pregunte. Es lo primero a probar si no aparece el contexto del equipo al arrancar: sin esa aprobación los avisos no corren, aunque todo lo demás esté bien |
 | `entrega` en `aviso` | Nada se perdió: el material recortado se vuelve a pedir en el próximo arranque. Si pasa en todos los arranques, desde el panel se pueden apagar los bloques que no use (Digest del equipo, Resumen de sesión) para que el que sí le importa entre completo; si no, avisarle al operador |
 | `captura` en `aviso` | No es un problema: hay trabajo de sesiones anteriores esperando destilarse. Ofrecele guardarlo ahora |
 | `conexion` 401/403 | El token no vale más: pedir uno nuevo y volver a conectar con `one-brain:connect` |
