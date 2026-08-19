@@ -17,6 +17,7 @@ Los bins de One Brain viven en `core/bin/` de este paquete, o sea **dos niveles 
 
 2. Leé la salida y armá el reporte. Los chequeos son:
    - **token** — si hay credencial guardada en esta máquina.
+   - **perfil** — en qué perfil de esta máquina corre la sesión y qué cerebro tiene conectado (el nombre del cerebro sale del token, sin llamar al server). Si el token todavía es el heredado del perfil de siempre — no se reconectó éste aparte —, avisa en `aviso` con el comando para separarlos.
    - **curl** — si está la herramienta que usa el plugin para hablar con el cerebro.
    - **parser** — si los hooks pueden leer el input que les manda el programa. Si esto falla, la captura automática no anda aunque todo lo demás esté bien.
    - **hooks** — si los avisos de One Brain están aprobados en la configuración de Codex. Es el chequeo que más importa acá: un aviso recién instalado nace **sin aprobar y no se ejecuta**, aunque el plugin figure instalado y activo, y no hay ninguna señal de eso. Vuelve a pedirse después de cada actualización que toque esos avisos.
@@ -35,6 +36,7 @@ Primero **el veredicto en una línea**: "está todo bien" o "encontré N problem
 | Falla | Qué le decís que haga |
 |---|---|
 | `token` | Pedile el token a quien le dio acceso y conectá con la skill `one-brain:connect` |
+| `perfil` en `aviso` | No es una falla: el token de este perfil es el heredado del de siempre. Si esta persona quiere un cerebro DISTINTO acá, que conecte el suyo con la skill `one-brain:connect` — a partir de ahí este perfil deja de usar el heredado |
 | `curl` | Instalar curl (en Windows: usar Git Bash o WSL, que ya lo traen) |
 | `parser` | Actualizar el plugin (ver "Cómo se actualiza", abajo) y reiniciar Codex |
 | `hooks` en `aviso` | Cerrar Codex, volver a abrirlo y **aceptar los avisos de One Brain** cuando los pregunte. Es lo primero a probar si no aparece el contexto del equipo al arrancar: sin esa aprobación los avisos no corren, aunque todo lo demás esté bien |
