@@ -109,6 +109,7 @@ Si el usuario descarta, no guardes ni insistas.
    - `title` (3-200), `content_md` (resumen autocontenido, 2-10 líneas)
    - `entities`: clientes/proyectos/personas/temas tocados
    - `level`: por defecto tu nivel; ofrecé cambiarlo si es sensible
+   - Si nombra un proyecto con ficha: `cierra_tareas` con los ids de las tareas que cerró, o `sin_cambios_en_tareas: true` si no cerró ninguna (por Bash: `--cierra-tareas "id1,id2"` o `--sin-cambios-en-tareas`). Sin una de las dos el server lo rechaza y lista las tareas abiertas con su id: reenviá con lo que corresponda
    - `supersedes`: si reemplaza o CORRIGE una memoria anterior (de cualquier tipo, no sólo decisiones), su id
 3. **Proponé** el/los resúmenes al usuario ANTES de escribir: "voy a guardar esto: […] · ¿ok / editás / descartás?".
 4. Con el OK → guardá cada entry por el **canal Bash**, que no depende de que la tool MCP esté

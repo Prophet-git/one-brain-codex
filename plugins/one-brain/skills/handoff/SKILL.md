@@ -33,6 +33,8 @@ Por el **canal Bash**, que no depende de que la tool MCP esté cargada en esta s
 
 `<RAIZ>` es la raíz de este paquete: **dos niveles arriba de este archivo**. Codex te dio la ruta absoluta de este `SKILL.md` cuando lo listó — usá esa para armarla. En Codex los bins no están en el PATH, así que van por ruta completa.
 
+Si el proyecto tiene ficha, sumá `--sin-cambios-en-tareas` (las tareas ya se movieron en el paso 1) o `--cierra-tareas "id1,id2"` con las que cierra este handoff: sin una de las dos el server lo rechaza y lista las tareas abiertas con su id.
+
 El comando imprime el `entry_id` si salió bien. Si el server no responde, **encola el guardado para reintentar**: el handoff no se pierde, pero avisáselo al usuario igual.
 
 Si la tool `brain_save` del server MCP `one-brain` está disponible en la sesión, también sirve (mismo destino, `type: "handoff"`). El canal Bash es el que conviene por default porque anda siempre.
