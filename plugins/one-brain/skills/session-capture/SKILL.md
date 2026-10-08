@@ -4,7 +4,7 @@ description: Destilar el avance de la sesión y guardarlo en One Brain al cerrar
 
 # Capturar la sesión en One Brain
 
-Cerrás el loop de memoria: convertís el trabajo de la sesión en entries de One Brain, con el usuario confirmando antes de escribir.
+Cerrás el loop de memoria. Lo que cerró durante la sesión ya se guardó en el momento, sin pedir permiso (regla de `use-onebrain`): no lo vuelvas a proponer. Al cerrar, lo que haya quedado sin guardar se propone **en una sola tanda** y se guarda con el OK del usuario.
 
 ## Dónde están los ejecutables
 
@@ -14,7 +14,7 @@ En Codex los bins **no están en el PATH** — se invocan por ruta completa, con
 
 ## Cuándo actuás
 - El usuario señala cierre ("listo", "gracias", "terminamos", se despide) y hubo trabajo real.
-- El usuario pide guardar explícitamente ("guardá esto").
+- El usuario pide guardar explícitamente ("guardá esto"): su pedido ya es el OK. Guardalo y avisá en una línea qué guardaste.
 - Un aviso de `SessionStart` dice que la sesión anterior quedó con trabajo sin guardar: leé ese transcript (la ruta viene en el aviso) y aplicá lo mismo sobre él.
 - Un aviso de cierre de turno dice que hay trabajo en ESTA sesión sin registrar.
 
@@ -45,10 +45,10 @@ Hay un tipo de memoria con **su propio disparador**, distinto del criterio de ar
 `procedimiento`. Guarda **cómo se OPERA el negocio** — pasos concretos, reproducibles, que le
 sirven a otro:
 
-> "Despausar el Supabase de Lempriere: entrar con bautista@prophet.lat, proyecto
-> qvdylrsneoaokxkbgibf, botón Restore, esperar ~2 min. Se pausa solo a los ~7 días sin uso."
+> "Despausar la base de Acme: entrar con la cuenta de soporte, proyecto acme-prod, botón
+> Restore, esperar ~2 min. Se pausa sola a los ~7 días sin uso."
 
-> "Deploy de PEM: `vercel --prod --scope winlabai --token=…`. Un git push NO deploya."
+> "Deploy del portal de Acme: `vercel --prod --scope acme --token=…`. Un git push NO deploya."
 
 **Proponé uno cuando en la sesión algo COSTÓ y TERMINÓ FUNCIONANDO:** hubo más de un intento, o
 hubo que averiguar algo que no estaba escrito, y el resultado se verificó. El intento que
@@ -59,7 +59,7 @@ No entra acá: buenas prácticas de cómo trabajar con el asistente (mezclan dos
 misma búsqueda), lo que ya está escrito en el repo o en un README (la memoria apunta, no copia),
 ni lo específico de una sesión que no se va a repetir.
 
-Una idea por memoria, como siempre: "desplegar Lempriere" y "despausar su Supabase" son dos
+Una idea por memoria, como siempre: "desplegar el portal de Acme" y "despausar su base" son dos
 procedimientos, no uno.
 
 **Antes de guardarlo, buscá con `brain_search`**: si ya hay un procedimiento para lo mismo, va
@@ -68,7 +68,7 @@ conviviendo es peor que uno desactualizado, porque nadie sabe cuál seguir.
 
 Se guarda igual que el resto, con `--type procedimiento`:
 
-`sh "<RAIZ>/core/bin/onebrain-save" --type procedimiento --title "Despausar el Supabase de Lempriere" --content "1. …" --entities "Lempriere"`
+`sh "<RAIZ>/core/bin/onebrain-save" --type procedimiento --title "Despausar la base de Acme" --content "1. …" --entities "Acme"`
 
 Prueba rápida antes de proponer: **si dentro de dos semanas nadie la buscaría, no va.** Ante
 la duda, no la guardes y decilo: es más barato perder una nota menor que ensuciar la memoria.
@@ -94,8 +94,9 @@ Por eso, si lo que ibas a guardar no entra:
 En perspectiva: la mediana real es de unos 2.000 caracteres y sólo el 0,5% de las memorias
 toca el techo. Si estás cerca del límite, casi seguro no destilaste lo suficiente.
 
-Y siempre, sin excepción: **proponer antes de escribir** (paso 3) y guardar sólo con el OK.
-Si el usuario descarta, no guardes ni insistas.
+Al cierre, siempre: **proponer la tanda antes de escribir** (paso 3) y guardar sólo con el OK
+(si pidió guardar algo puntual, el pedido ya es el OK). Si el usuario descarta, no guardes ni
+insistas.
 
 ## Qué hacés
 
