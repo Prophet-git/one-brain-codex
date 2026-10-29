@@ -39,6 +39,12 @@ El comando imprime el `entry_id` si salió bien. Si el server no responde, **enc
 
 Si la tool `brain_save` del server MCP `one-brain` está disponible en la sesión, también sirve (mismo destino, `type: "handoff"`). El canal Bash es el que conviene por default porque anda siempre.
 
+## Un hilo, un handoff vivo
+- Otra vuelta del mismo trabajo repite la cabeza del título y numera ("Alternativo vuelta 6: …" tras "Alternativo vuelta 5: …"). Así, con una entidad en común, el nuevo **reemplaza solo** al anterior tuyo (`reemplazo_handoffs` en la respuesta; el viejo queda vencido, no borrado).
+- Si la respuesta trae `quizas_mismo_hilo` y de verdad es el mismo trabajo, cerralos con `brain_cerrar_handoffs` (`fuente`: este `entry_id`). Si no, nada.
+- Tus handoffs vigentes de trabajos ya juntados, deployados o abandonados: cerralos con `brain_cerrar_handoffs` y su prueba (commit, deploy o id).
+- Dos pedidos distintos del mismo cliente son dos hilos: no los numeres como vueltas.
+
 ## Reglas
 - Concreto > vago: "resume en el wizard paso 3, falta el submit" gana a "seguir con el wizard".
 - Nunca guardes secrets ni datos personales sensibles.
