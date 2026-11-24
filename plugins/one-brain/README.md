@@ -58,7 +58,7 @@ próximo paso concreto.
 
 | | |
 |---|---|
-| **Al arrancar** | Te trae lo vigente del equipo: decisiones, en qué anda cada uno, tu último handoff y las menciones que te dejaron. |
+| **Al arrancar** | Te trae lo vigente del equipo: decisiones, en qué anda cada uno, tu último handoff y las menciones que te dejaron. Si hay tareas para vos, te presenta cada una con quién la pidió y su contexto, y espera tu sí antes de arrancarla (skill `arranque`). |
 | **Mientras trabajás** | Podés preguntarle al cerebro (`brain_search`, `brain_context`) y guardar a mano (`brain_save`). |
 | **Al cerrar** | Te avisa si quedó trabajo sin registrar y te ofrece destilarlo con la skill `one-brain:session-capture`. |
 | **Al soltar un proyecto** | `one-brain:proyecto-dejar` deja repo, cómo se levanta y las credenciales para que otro lo retome. |
